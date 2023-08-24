@@ -1,4 +1,4 @@
-# Phaser 3 + Vite.js Template
+# Phaser 3 + Vite.js
 > Make Phaser 3 games with modern frontend tooling.
 
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -108,5 +108,4 @@ You can change the dev server's port number by modifying the `vite.config.js` fi
 Change 8000 to whatever you want.
 
 ## License
-
-//[MIT License](https://github.com/ourcade/phaser3-vite-template/blob/master/LICENSE)
+//[MIT License]Template found in (https://github.com/ourcade/phaser3-vite-template/blob/master/LICENSE)
