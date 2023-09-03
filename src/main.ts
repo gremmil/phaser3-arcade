@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import Scene_Sem2 from "./Scene_Sem2";
 import Scene_Sem3 from "./Scene_Sem3";
+import Scene_Hud from "./Scene_Hud";
 
 
 const config: Phaser.Types.Core.GameConfig = {
@@ -20,7 +21,7 @@ const config: Phaser.Types.Core.GameConfig = {
 		}
 
 	},
-	scene: [Scene_Sem2, Scene_Sem3],
+	scene: [Scene_Sem3, Scene_Hud ],
 };
 
 export const game = new Phaser.Game(config);

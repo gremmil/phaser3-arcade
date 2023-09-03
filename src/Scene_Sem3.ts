@@ -1,11 +1,11 @@
 import Phaser from 'phaser'
-
-
 export default class Scene_Sem3 extends Phaser.Scene {
   public background: Phaser.GameObjects.TileSprite;
   public ship: Phaser.Physics.Arcade.Sprite;
   public bullets: Phaser.GameObjects.Group;
   public enemies: Phaser.GameObjects.Group;
+  public explosionSound: Phaser.Sound.BaseSound;
+  public shotSound: Phaser.Sound.BaseSound;
   public lastFired: number = 0;
   public cursorKeys: Phaser.Types.Input.Keyboard.CursorKeys;
 
@@ -18,16 +18,20 @@ export default class Scene_Sem3 extends Phaser.Scene {
     this.load.image('ship', 'img/nave.png');
     this.load.image('bullet', 'img/laser.png');
     this.load.image('enemy', 'img/pajaro2.png');
+    this.load.audio("explosionSound", "audio/explosion_dull.mp3");
+    this.load.audio("shotSound", "audio/laser_1.mp3");
   }
 
   create() {
     this.background = this.add.tileSprite(0, 0, this.game.canvas.width * 2, this.game.canvas.height * 2, "background");
+    this.shotSound = this.sound.add("shotSound");
+    this.explosionSound = this.sound.add("explosionSound");
+
     this.ship = this.physics.add.sprite(this.game.canvas.width / 2, 500, 'ship');
     this.ship.setOrigin(0.5);
     this.ship.setCollideWorldBounds(true);
 
     this.cursorKeys = this.input.keyboard.createCursorKeys();
-
 
 
     class Bullet extends Phaser.Physics.Arcade.Sprite {
@@ -54,6 +58,9 @@ export default class Scene_Sem3 extends Phaser.Scene {
 
       }
     };
+    class Hud extends Phaser.Scene {
+
+    }
 
     this.bullets = this.physics.add.group({
       classType: Bullet,
@@ -91,11 +98,14 @@ export default class Scene_Sem3 extends Phaser.Scene {
     if (this.cursorKeys.space.isDown && time > this.lastFired) {
       const bullet = this.bullets.get();
       if (bullet) {
+        this.shotSound.play();
         bullet.fire(this.ship.x, this.ship.y);
         this.lastFired = time + 50;
       }
     }
     this.physics.collide(this.bullets, this.enemies, (bullet, enemy) => {
+      this.explosionSound.play();
+      this.events.emit('addScore');
       bullet.destroy();
       enemy.destroy();
     })

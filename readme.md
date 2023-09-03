@@ -54,8 +54,9 @@ Production files will be placed in the `dist` folder. Then upload those files to
     ├── node_modules
     ├── public
     ├── src
-    │   ├── HelloWorldScene.js
-    │   ├── main.js
+    │   ├── main.ts
+    │   ├── Scene_Home.ts
+    │   ├── Scene_Hud.ts
 	├── index.html
     ├── package.json
 ```
@@ -76,9 +77,9 @@ Example `public` structure:
 
 ```
     public
-    ├── images
+    ├── img
     │   ├── my-image.png
-    ├── music
+    ├── audio
     │   ├── ...
     ├── sfx
     │   ├── ...
