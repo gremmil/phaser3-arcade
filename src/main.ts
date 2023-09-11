@@ -1,13 +1,12 @@
 import Phaser from "phaser";
-import Scene_Sem2 from "./Scene_Sem2";
-import Scene_Sem3 from "./Scene_Sem3";
-import Scene_Hud from "./Scene_Hud";
+import SceneSpaceInvaders from "./scenes/space_invaders/SceneSpaceInvaders";
+import SceneHudCustom from "./scenes/space_invaders/SceneHudCustom";
 
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
-	width: 370,
-	height: 550,
+	width: 370,//290
+	height: 550,//540
 	physics: {
 		default: 'arcade',
 		arcade: {
@@ -21,7 +20,7 @@ const config: Phaser.Types.Core.GameConfig = {
 		}
 
 	},
-	scene: [Scene_Sem3, Scene_Hud ],
+	scene: [SceneSpaceInvaders, SceneHudCustom ],
 };
 
 export const game = new Phaser.Game(config);
